@@ -17,9 +17,15 @@ io.on('connection', socket =>{
     socket.on('send', message =>{
         socket.broadcast.emit('receive', {message: message, name: users[socket.id]});
     });
+
     // When user disconnects
-    socket.on('disconnect', message =>{
+    socket.on('disconnect', name =>{
         socket.broadcast.emit('left', users[socket.id]);
         delete users[socket.id];
+    });
+
+    // When user is typing
+    socket.on('typing', name => {
+        socket.broadcast.emit('typing', name);
     });
 });

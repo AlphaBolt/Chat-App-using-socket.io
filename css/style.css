@@ -31,11 +31,22 @@
 .left{
     float: left;
     clear: both;
+    background-color: rgb(163, 157, 157);
 }
 
 .right{
     float: right;
     clear: both;
+    background-color: rgb(111, 0, 255);
+}
+
+.center {
+    font-size: 15px;
+    clear: both;
+    margin: auto;
+    height: 5px;
+    text-align: center;
+    line-height: 5px;
 }
 
 #send-container{
@@ -54,6 +65,8 @@
 }
 
 .btn{
+    height: 40px;
+    width: 40px;
     cursor: pointer;
-    height: 34px;
+    border-radius: 20%;
 }

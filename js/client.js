@@ -4,6 +4,8 @@ const socket = io('http://localhost:8000')
 const form = document.getElementById('send-container');
 const messageInput = document.getElementById('messageInp');
 const messageContainer = document.querySelector(".container");
+// To show {user} is typing
+const feedback = document.getElementById('feedback');
 
 const name = prompt("Enter your name to join chat:");
 socket.emit('new-user-joined', name);  //This will emit an event which will be recieved by index.js of nodeServer
@@ -19,6 +21,7 @@ form.addEventListener('submit', (event) => {
     messageInput.value = '';
 });
 
+var audio = new Audio("sounds/sound 1.mp3");
 
 const append = (message, position) => {
     const messageElement = document.createElement('div');
@@ -28,19 +31,34 @@ const append = (message, position) => {
     messageContainer.append(messageElement);
     // Playing audio:
     if(position == 'left'){
-        var audio = new Audio("sounds/sound 1.mp3");
         audio.play();
+        // When a new message arrives, this will automatically scroll the <div> to bottom of page
+        messageContainer.scrollTop = messageContainer.scrollHeight;
     }
 };
 
+
+// Trying to implement {user} is typing message:
+messageInput.addEventListener("keydown", function(event){
+    // socket.emit('send',"Typing...");
+    socket.emit('typing', name);
+});
+
+// .................Listen for events
+
 socket.on('user-joined', name => {
-    append(`${name} joined the chat`, 'right');
+    append(`${name} joined the chat`, 'center');
 });
 
 socket.on('receive', data => {
+    feedback.innerHTML = '';
     append(`${data.name}: ${data.message}`, 'left');
 });
 
-socket.on('left', data => {
-    append(`${name}: left the chat`, 'left');
+socket.on('left', name => {
+    append(`${name} left the chat`, 'center');
+});
+
+socket.on('typing', name => {
+    feedback.innerHTML = name + " is typing...";
 });
