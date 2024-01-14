@@ -23,30 +23,55 @@
     background-color: white;
     width: 24%;
     padding: 10px;
-    margin: 17px 12px;
-    border: 2px solid black;
+    margin: 5px 12px;
     border-radius: 10px;
 }
 
 .left{
+    position: relative;
     float: left;
     clear: both;
-    background-color: rgb(163, 157, 157);
+    background-color: #A8DDFD;
 }
 
 .right{
+    position: relative;
     float: right;
     clear: both;
-    background-color: rgb(111, 0, 255);
+    background-color: #f8e896;
+}
+
+.right::after,
+.left::after {
+    content: '';
+    position: absolute;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    top: 0;
+}
+
+.right::after {
+    border-top: 15px solid #f8e896;
+    right: -15px;
+}
+
+.left::after {
+    border-top: 15px solid #A8DDFD;
+    left: -15px;
 }
 
 .center {
     font-size: 15px;
     clear: both;
-    margin: auto;
+    margin: 10px auto;
     height: 5px;
     text-align: center;
     line-height: 5px;
+}
+
+.message-timestamp {
+    font-size: 0.8em;
+    text-align: end;
 }
 
 #send-container{
