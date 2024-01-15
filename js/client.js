@@ -25,9 +25,15 @@ var audio = new Audio("sounds/sound 1.mp3");
 
 const append = (message, position) => {
     const messageElement = document.createElement('div');
-    messageElement.innerText = message;
+    // messageElement.innerText = message;
     messageElement.classList.add('message');
     messageElement.classList.add(position);
+
+    // Create <p> tag to better manage message content
+    const messageContent = document.createElement('p');
+    messageContent.classList.add('message-content');
+    messageContent.innerText = message;
+    messageElement.append(messageContent);
 
     // To show current time below text send
     if(position != 'center'){
