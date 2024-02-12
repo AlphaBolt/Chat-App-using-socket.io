@@ -1,6 +1,6 @@
-/* body{
-
-} */
+body{
+    margin: 0;
+}
 
 .logo{
     display: block;
@@ -9,9 +9,24 @@
     height: 50px;
 }
 
+.left-section{
+    position: absolute;
+    float: left;
+    background-color: rgba(40, 39, 39);
+    width: 35%;
+    top: 50px;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+.right-section{
+    width: 65%;
+    float: right;
+}
+
 .container{
-    max-width: 950px;
-    background-color: red;
+    /* max-width: 950px; */
+    background-color: rgb(56, 53, 53);
     margin: auto;
     height: 60vh;
     padding: 33px;
@@ -94,10 +109,11 @@
 }
 
 #messageInp{
-    width: 91%;
+    width: 80%;
     border: 2px solid black;
-    border-radius: 6px;
-    height: 34px;
+    border-radius: 30px;
+    height: 37px;
+    padding: 0 20px;
 }
 
 .btn{
@@ -105,4 +121,33 @@
     width: 40px;
     cursor: pointer;
     border-radius: 20%;
+}
+
+
+/* ............... Left Section ................. */
+.user {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid grey;
+}
+
+.user:hover{
+    background-color: rgb(60, 58, 58);
+}
+
+.profile-pic {
+    padding: 0 15px;
+}
+
+.preview{
+    margin: 15px 0;
+}
+
+.user h3{
+    margin: 0;
+    color: white;
+}
+.user p{
+    margin: 0;
+    color: white;
 }

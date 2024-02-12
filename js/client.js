@@ -4,6 +4,7 @@ const socket = io('http://localhost:8000')
 const form = document.getElementById('send-container');
 const messageInput = document.getElementById('messageInp');
 const messageContainer = document.querySelector(".container");
+const chatList = document.querySelector(".chat-list"); // Select the chat list
 // To show {user} is typing
 const feedback = document.getElementById('feedback');
 
@@ -57,6 +58,31 @@ const append = (message, position) => {
     }
 };
 
+// Display user's list
+const displayUsersList = (users) => {
+    // Chat Group
+    console.log(users)
+
+    // for (const userId in users) {
+    //     console.log(users[userId]);
+    //     const userElement = document.createElement('div');
+    //     userElement.classList.add('user');
+
+    //     const profilePic = document.createElement('div');
+    //     profilePic.classList.add('profile-pic');
+    //     profilePic.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 512 512"><path d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z"/></svg>`;
+        
+    //     const userName = document.createElement('div');
+    //     userName.classList.add('preview');
+    //     userName.innerText = users[userId];
+
+    //     userElement.appendChild(profilePic);
+    //     userElement.appendChild(userName);
+    //     chatList.appendChild(userElement);    
+    // }
+    
+};
+
 
 // Trying to implement {user} is typing message:
 messageInput.addEventListener("keydown", function(event){
@@ -81,4 +107,9 @@ socket.on('left', name => {
 
 socket.on('typing', name => {
     feedback.innerHTML = name + " is typing...";
+});
+
+// Update the list of users when a new user joins or leaves
+socket.on('update-user-list', users => {
+    displayUsersList(users);
 });

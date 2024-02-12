@@ -12,6 +12,7 @@ io.on('connection', socket =>{
     socket.on('new-user-joined', name => {
         users[socket.id] = name;
         socket.broadcast.emit('user-joined', name);   // when new user joins, everyone can get a msg saying who joined
+        io.emit('update-user-list', users); // Update the list of users for all clients
     });
 
     socket.on('send', message =>{
@@ -19,9 +20,12 @@ io.on('connection', socket =>{
     });
 
     // When user disconnects
-    socket.on('disconnect', name =>{
-        socket.broadcast.emit('left', users[socket.id]);
-        delete users[socket.id];
+    socket.on('disconnect', () => {
+        if (users[socket.id]){      // this line was added
+            socket.broadcast.emit('left', users[socket.id]);
+            delete users[socket.id];
+            io.emit('update-user-list', users); // Update the list of users for all clients
+        }
     });
 
     // When user is typing
