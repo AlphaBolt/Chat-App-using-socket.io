@@ -22,7 +22,7 @@ form.addEventListener('submit', (event) => {
     messageInput.value = '';
 });
 
-var audio = new Audio("sounds/sound 1.mp3");
+var audio = new Audio("../static/sounds/sound 1.mp3");
 
 const append = (message, position) => {
     const messageElement = document.createElement('div');

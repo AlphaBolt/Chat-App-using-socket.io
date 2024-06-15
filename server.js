@@ -1,5 +1,11 @@
+const express = require('express')
+const app = express()
+const path = require('path')
+
+// Serving static files such as images, css and js
+app.use('/static', express.static('static'))
+
 // Node server which will handle socket.io connections
-// const io = require('socket.io')(8000)
 const io = require('socket.io')(8000, {cors: {origin: "*"}});
 
 users = {};
@@ -33,3 +39,19 @@ io.on('connection', socket =>{
         socket.broadcast.emit('typing', name);
     });
 });
+
+
+
+
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, './templates/index.html'))
+})
+
+
+
+
+
+const port = process.env.PORT || 3000
+app.listen(port, () => {
+    console.log(`App listening on port http://localhost:${port}`)
+  })
