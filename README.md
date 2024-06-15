@@ -22,5 +22,8 @@ Start the server
   npx nodemon server.js
 ```
 
-Access app:
+Then access locally here:
 http://127.0.0.1:3000
+
+Deployed on render:
+https://chat-app-using-socket-io.onrender.com
