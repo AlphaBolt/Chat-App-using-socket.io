@@ -6,7 +6,12 @@ const path = require('path')
 app.use('/static', express.static('static'))
 
 // Node server which will handle socket.io connections
-const io = require('socket.io')(8000, {cors: {origin: "*"}});
+// const io = require('socket.io')(8000, {cors: {origin: "*"}});
+
+const { Server } = require("socket.io");
+const http = require('http');
+const server = http.createServer(app);
+const io = new Server(server);
 
 users = {};
 
@@ -52,6 +57,6 @@ app.get('/', function (req, res) {
 
 
 const port = process.env.PORT || 3000
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`App listening on port http://localhost:${port}`)
   })
