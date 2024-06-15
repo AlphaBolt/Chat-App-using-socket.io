@@ -28,5 +28,5 @@ Start the server
   npx nodemon index.js
 ```
 
-After starting the server, you can Go Live in localhost 5500:
-http://127.0.0.1:5500/index.html
+Press Go Live in VSCode to access in localhost 5500:
+http://127.0.0.1:5500
